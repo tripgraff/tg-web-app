@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './App.css';
 import { useTelegram } from "./hooks/useTelegram";
-import header from './components/header/header.jsx';
+import Header from './components/header/header.jsx';
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <header />
+      <Header />
       <button onClick={onToggleButton }>togle</button>
     </div>
   );
