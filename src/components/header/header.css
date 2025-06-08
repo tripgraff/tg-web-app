@@ -13,9 +13,9 @@
 button {
     border: solid 1px var(--tg-theme-bg-color);
     outline: none;
-    /* background: var(--tg-theme-button-color); */
-    background-color: black;
+    background: var(--tg-theme-button-color);
+    /* background-color: black; */
     color: var(--tg-theme-text-color);
-    padding: 5px;
+    padding: 7px;
     border-radius: 15px;
 }
