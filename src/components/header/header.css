@@ -11,7 +11,7 @@
 }
 
 button {
-    border: solid 1px var(--tg-theme-bg-color);
+    border: solid 1px rgb(123, 123, 123);
     outline: none;
     background: var(--tg-theme-button-color);
     /* background-color: black; */
