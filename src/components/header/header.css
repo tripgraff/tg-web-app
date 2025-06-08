@@ -9,3 +9,8 @@
 .username {
     margin-left: auto ;
 }
+
+.button {
+    background-color: var(var(--tg-theme-bg-color));
+    color: var(--tg-theme-text-color);
+}
