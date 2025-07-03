@@ -17,12 +17,14 @@ const getTotalPrice = (items) => {
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg} = useTelegram();
+
+
     const onAdd = (product) => {
-        const alreadeAdded = addedItems.find(item => item.id === product.id);
+        const alreadyAdded = addedItems.find(item => item.id === product.id);
         let newItems = [];
 
-        if (alreadeAdded) {
-            newItems = addedItems.filter(item => item.id !== product.id)
+        if(alreadyAdded) {
+            newItems = addedItems.filter(item => item.id !== product.id);
         } else {
             newItems = [...addedItems, product];
         }
@@ -30,23 +32,24 @@ const ProductList = () => {
         setAddedItems(newItems)
 
         if(newItems.length === 0) {
-            tg.mainButton.hide();
+            tg.MainButton.hide();
         } else {
-            tg.mainButton.show();
-            tg.mainButton.setParams({
+            tg.MainButton.show();
+            tg.MainButton.setParams({
                 text: `Купить ${getTotalPrice(newItems)}`
             })
         }
     }
+
     return (
         <div className={'list'}>
-             {products.map(item => (
+            {products.map(item => (
                 <ProductItem
-                    product = {item}
-                    onAdd = {onAdd}
+                    product={item}
+                    onAdd={onAdd}
                     className={'item'}
                 />
-             ))}
+            ))}
         </div>
     );
 };
