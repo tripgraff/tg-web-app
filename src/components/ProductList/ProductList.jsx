@@ -48,7 +48,7 @@ const ProductList = () => {
         totalPrice: getTotalPrice(addedItems),
         queryId,
     };
-    alert('Sending data: ' + JSON.stringify(data)); // Выводим данные в alert
+    // alert('Sending data: ' + JSON.stringify(data)); // Выводим данные в alert
     fetch('http://45.138.162.222:8000/web-data', {
         method: 'POST',
         headers: {
