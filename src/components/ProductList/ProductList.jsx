@@ -34,13 +34,17 @@ const ProductList = () => {
     //     })
     // }, [addedItems, queryId])
 
-    const onSendData = useCallback(() => {
+const onSendData = useCallback(() => {
+    if (!tg) {
+        alert('Telegram Web App не инициализирован');
+        return;
+    }
     if (!queryId) {
-        alert('queryId is undefined');
+        alert('queryId не определён');
         return;
     }
     if (!addedItems.length) {
-        alert('No items added to cart');
+        alert('Корзина пуста');
         return;
     }
     const data = {
@@ -48,21 +52,33 @@ const ProductList = () => {
         totalPrice: getTotalPrice(addedItems),
         queryId,
     };
-    // alert('Sending data: ' + JSON.stringify(data)); // Выводим данные в alert
+    console.log('Отправляемые данные:', JSON.stringify(data));
+    alert('Отправляем данные: ' + JSON.stringify(data));
     fetch('http://45.138.162.222:8000/web-data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     })
-    .then(response => {
-        alert('Response status: ' + response.status);
-        return response.json();
-    })
-    .then(data => alert('Response data: ' + JSON.stringify(data)))
-    .catch(error => alert('Fetch error: ' + error.message));
-}, [addedItems, queryId]);
+        .then(response => {
+            console.log('Ответ сервера:', {
+                status: response.status,
+                statusText: response.statusText,
+                headers: [...response.headers.entries()],
+            });
+            alert('Статус ответа: ' + response.status);
+            return response.json().catch(() => ({}));
+        })
+        .then(data => {
+            console.log('Данные ответа:', data);
+            alert('Данные ответа: ' + JSON.stringify(data));
+        })
+        .catch(error => {
+            console.error('Ошибка запроса:', error);
+            alert('Ошибка запроса: ' + error.message);
+        });
+}, [addedItems, queryId, tg]);
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)

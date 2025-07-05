@@ -1,5 +1,4 @@
-const tg = window.Telegram.WebApp
-
+const tg = window.Telegram.WebApp;
 
 export function useTelegram() {
 
@@ -11,10 +10,10 @@ export function useTelegram() {
         if(tg.MainButton.isVisible) {
             tg.MainButton.hide();
         } else {
-            tg.MainButton.show(); 
+            tg.MainButton.show();
         }
-    } 
-     
+    }
+
     return {
         onClose,
         onToggleButton,
