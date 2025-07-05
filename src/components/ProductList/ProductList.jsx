@@ -19,20 +19,50 @@ const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
 
+    // const onSendData = useCallback(() => {
+    //     const data = {
+    //         products: addedItems,
+    //         totalPrice: getTotalPrice(addedItems),
+    //         queryId,
+    //     }
+    //     fetch('http://45.138.162.222:8000/web-data', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+    // }, [addedItems, queryId])
+
     const onSendData = useCallback(() => {
-        const data = {
-            products: addedItems,
-            totalPrice: getTotalPrice(addedItems),
-            queryId,
-        }
-        fetch('http://45.138.162.222:8000/web-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-    }, [addedItems, queryId])
+    if (!queryId) {
+        alert('queryId is undefined');
+        return;
+    }
+    if (!addedItems.length) {
+        alert('No items added to cart');
+        return;
+    }
+    const data = {
+        products: addedItems,
+        totalPrice: getTotalPrice(addedItems),
+        queryId,
+    };
+    alert('Sending data: ' + JSON.stringify(data)); // Выводим данные в alert
+    fetch('http://45.138.162.222:8000/web-data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        alert('Response status: ' + response.status);
+        return response.json();
+    })
+    .then(data => alert('Response data: ' + JSON.stringify(data)))
+    .catch(error => alert('Fetch error: ' + error.message));
+}, [addedItems, queryId]);
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
