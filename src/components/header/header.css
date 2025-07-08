@@ -28,6 +28,7 @@ button {
     padding: 0 20px;
     background: white;
     color: black;
+    margin-bottom: 10px;
 }
 
 .logo {
@@ -44,6 +45,7 @@ button {
 }
 
 .cart-count {
+    cursor: pointer;
     position: absolute;
     bottom: -4px;
     left: -6px;
@@ -52,7 +54,7 @@ button {
     border-radius: 50%;
     border: 0.5px solid black;
     padding: 2px 6px;
-    font-size: 12px;
+    font-size: 11px;
     z-index: 1;
     -ms-user-select: none; 
 	-moz-user-select: none; 
