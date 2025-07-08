@@ -1,4 +1,4 @@
-.header {
+/* .header {
     width: 100%;
     height: 50px;
     display: flex;
@@ -14,8 +14,42 @@ button {
     border: solid 1px rgb(189, 189, 189);
     outline: none;
     background: var(--tg-theme-button-color);
-    /* background-color: black; */
+    /* background-color: black; 
     color: var(--tg-theme-text-color);
     padding: 7px;
     border-radius: 15px;
+} */
+
+.header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+}
+
+.logo {
+    height: 40px;
+}
+
+.cart {
+    position: relative;
+    margin-left: auto;
+}
+
+.cart-icon {
+    cursor: pointer;
+}
+
+.cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
 }
